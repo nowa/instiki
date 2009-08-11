@@ -7,9 +7,9 @@ def list_item(text, link_options, description, accesskey = nil)
   }
 end
 %>
-
+<% logger.info "nav....#{@link_mode.inspect}" %>
 <div class="navigation">
-  <% if params['action'] != 'published' then %>
+  <% if params['action'] != 'published' and @link_mode != :publish then %>
     <%= list_item 'Home Page', {:action => 'show', :id => 'HomePage'}, 'Home, Sweet Home', 'H' %> | 
     <%= list_item 'All Pages', {:action => 'list'}, 'Alphabetically sorted list of pages', 'A' %> | 
     <%= list_item 'Recently Revised', {:action =>'recently_revised'}, 'Pages sorted by when they were last changed', 'U' %> |
@@ -24,6 +24,6 @@ end
     <% end %>
   <% else %>
   	<%= list_item 'Home Page', {:action => 'published', :id => 'HomePage'}, 'Home, Sweet Home', 'H' %> | 
-    <%= list_item 'Feeds', {:action => 'feeds'}, 'Subscribe to changes by Atom' %>
+    <%= list_item 'Feeds', {:action => 'published_feeds'}, 'Subscribe to changes by Atom' %>
   <% end%>
 </div>

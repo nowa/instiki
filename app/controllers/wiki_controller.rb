@@ -132,6 +132,11 @@ class WikiController < ApplicationController
     # show the template
   end
 
+  def published_feeds
+    @link_mode ||= :publish
+    @rss_with_content_allowed = rss_with_content_allowed?
+  end
+
   def list
     parse_category
     @page_names_that_are_wanted = @pages_in_category.wanted_pages
@@ -158,7 +163,12 @@ class WikiController < ApplicationController
   end
 
   def atom_with_headlines
-    render_atom(hide_description = true)
+    if rss_with_content_allowed?
+      render_atom(hide_description = true)
+    else
+      render :text => 'Atom feed with content for this web is blocked for security reasons. ' +
+        'The web is password-protected and not published', :status => 403, :layout => 'error'
+    end
   end
 
   def search

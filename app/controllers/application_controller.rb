@@ -222,7 +222,7 @@ class ApplicationController < ActionController::Base
   end
   
   def authorization_needed?
-    not %w(login authenticate feeds published atom_with_headlines atom_with_content file blahtex_png).include?(action_name)
+    not %w(login authenticate published_feeds feeds published atom_with_headlines atom_with_content file blahtex_png).include?(action_name)
   end
 
   def authorized?

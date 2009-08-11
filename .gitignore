@@ -1,0 +1,7 @@
+/cache/*
+/log/*
+/webs/*
+/dump/*
+secret
+/tmp
+/public/webs
