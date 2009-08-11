@@ -35,4 +35,7 @@
     expression. That's actually what Instiki uses, so go right ahead and flex your 
     "[a-z]*Leet?RegExpSkill(s|z)"
   </p>
+  <p>
+    <%= link_to 'Create page "'+h(params[:query])+'"', :web => @web.address, :action => 'new', :id => params[:query] %>
+  </p>
 <%- end -%>
